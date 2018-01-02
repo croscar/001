@@ -128,20 +128,6 @@
         showToggle:true,                    //是否显示详细视图和列表视图的切换按钮
     });
 
-//    $.ajax({
-//        type: "get",
-//        contentType :"text/plain; charset=UTF-8",
-//        url: myurl,
-//        dataType: 'JSON',
-//        success: function(result) {
-//            mydata=JSON.stringify(result);
-//            $('#table3').bootstrapTable('load',result);
-//        },
-//        error: function(XMLHttpRequest, textStatus, errorThrown) {
-//            mydata='error:'+XMLHttpRequest.status+XMLHttpRequest.readyState+textStatus;
-//        }
-//    });
-
     layui.config({
         base : "js/"
     }).use(['table','element','layer','jquery'], function(){
@@ -149,19 +135,7 @@
     });
 
 
-    // var webFrame = require('electron').webFrame;
-    // webFrame.setZoomFactor(3);
-    //const nativeImage = require('electron').nativeImage
-    //let image = nativeImage.createFromPath('c:/1.jpg')
-    // console.log(image)
-    // var i=image.getSize()
-    // console.log(i)
-    // document.write("width:"+i.width+"  height:"+i.height)
-    //document.write('<img src="'+image.toDataURL()+'" />')
-    // const {shell} = require('electron')
-
 </script>
-
 
 </body>
 </html>
