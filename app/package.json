@@ -1,0 +1,24 @@
+{
+		"name": "sgapp",
+		"version": "0.1.0",
+		"main": "main.js",
+		"scripts": {
+				"pack": "build --win --ia32 --dir",
+				"dist": "build --win --ia32"
+		},
+		"build": {
+				"appId": "sg.id",
+				"copyright": "Open Totally",
+				"compression": "normal",
+				"electronVersion": "1.7.9",
+				"icon": "res/icon.ico",
+				"nsis": {
+						"oneClick": true,
+						"perMachine": true,
+						"runAfterFinish": true
+				}
+		},
+		"win": {
+				"icon": "res/icon.ico"
+		}
+}
