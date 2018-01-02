@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MyApp</title>
+    <script src="static/jquery.min.js"></script>
+    <script src="static/jquery.min.js"></script>
+    <script src="static/js/vue.min.js"></script>
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/bootstrap-table/src/bootstrap-table.css">
+    <script src="static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="static/bootstrap-table/src/bootstrap-table.js"></script>
+    <link rel="stylesheet" href="static/layui/css/layui.css">
+    <link rel="stylesheet" href="static/font-awesome/css/font-awesome.min.css" media="all">
+
+    <script src="static/layui/layui.js?s=36"></script>
+</head>
+<body style="width: 100%; height: 100%;">
+
+<div id="appa">
+
+    <div class="layui-tab" >
+        <ul class="layui-tab-title">
+            <li class="layui-this">List</li>
+            <li>Preview</li>
+            <li>test</li>            <li>Detail</li>
+        </ul>
+
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                <table id="table3">
+                </table>
+            </div>
+
+
+            <div class="layui-tab-item">
+
+                <div  v-for="row1 in curPage[0]">
+                    <div class="layui-col-xs4" style="color:brown">
+
+                        <center>     <image v-bind:src="row1.Image" width='200' /></center>
+                    <center><a onclick="openfile(this)" :href="row1.Video" target="view_window" >{{row1.Sn}} </a> </center>  
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-tab-item">
+
+            </div>
+
+            <div class="layui-tab-item">
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function openfile(obj)
+    {
+        var thisObj=$(obj);  
+        var src=thsiObj.attr("src");  
+        alert(obj)        
+    }
+
+    var myurl = "http://127.0.0.1/list";
+    var mydata=""
+    var appa = new Vue({
+        el: '#appa',
+        data: {
+            curPage:[]
+        }
+    })
+
+    $('#table3').bootstrapTable({
+        url: 'http://127.0.0.1/list',         //请求后台的URL（*）
+        method: 'get',                      //请求方式（*）
+        striped: true,                      //是否显示行间隔色
+        cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+        pagination: true,                   //是否显示分页（*）
+        sortable: true,                     //是否启用排序
+        sortOrder: "asc",                   //排序方式
+        //queryParams: oTableInit.queryParams,//传递参数（*）
+        sidePagination: "client",           //分页方式：client客户端分页，server服务端分页（*）
+        search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+        strictSearch: false,
+        columns: [{
+            field: 'Sn',
+            title: 'Sn',
+            sortable:true
+        }, {
+            field: 'Title',
+            title: 'Title',
+            sortable:true
+        }, {
+            field: 'Image',
+            title: 'Image',
+            sortable:true,
+            cardVisible:false,
+        }, {
+            field: 'preview',
+            title: 'preview',
+            visible:false,
+            cardVisible:true,
+            formatter: function(value,row,index) {
+                return "<image src='"+row.Image+"' height='100'>";
+            }
+
+        }, ],                                                                                                                       
+        onLoadSuccess:function (data) {
+            //appa.curPage.push($('#table3').bootstrapTable('getData'));  
+            appa.curPage.push(data);                   
+        },
+        onToggle:function (cardView) {
+
+            if(cardView)
+                $('#table3').bootstrapTable('showColumn','preview');
+            else
+                $('#table3').bootstrapTable('hideColumn','preview');
+        },
+
+        detailFormatter:function(index, row) {
+            return "<image src='"+row.Image+"'  width='300'>   <video src='"+row.Video+"' width='300' controls='controls'>" ;
+        },
+        detailView:true,
+        showToggle:true,                    //是否显示详细视图和列表视图的切换按钮
+    });
+
+//    $.ajax({
+//        type: "get",
+//        contentType :"text/plain; charset=UTF-8",
+//        url: myurl,
+//        dataType: 'JSON',
+//        success: function(result) {
+//            mydata=JSON.stringify(result);
+//            $('#table3').bootstrapTable('load',result);
+//        },
+//        error: function(XMLHttpRequest, textStatus, errorThrown) {
+//            mydata='error:'+XMLHttpRequest.status+XMLHttpRequest.readyState+textStatus;
+//        }
+//    });
+
+    layui.config({
+        base : "js/"
+    }).use(['table','element','layer','jquery'], function(){
+
+    });
+
+
+    // var webFrame = require('electron').webFrame;
+    // webFrame.setZoomFactor(3);
+    //const nativeImage = require('electron').nativeImage
+    //let image = nativeImage.createFromPath('c:/1.jpg')
+    // console.log(image)
+    // var i=image.getSize()
+    // console.log(i)
+    // document.write("width:"+i.width+"  height:"+i.height)
+    //document.write('<img src="'+image.toDataURL()+'" />')
+    // const {shell} = require('electron')
+
+</script>
+
+
+</body>
+</html>
+
+
+
+
+
+
