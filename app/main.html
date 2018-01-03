@@ -16,6 +16,7 @@
 </head>
 <body style="width: 100%; height: 100%;">
 
+    
 <div id="appa">
 
     <div class="layui-tab" >
@@ -58,6 +59,20 @@
 
 
 <script>
+
+    function isSupportFileApi() {
+        if(window.File && window.FileList && window.FileReader && window.Blob) {
+            return true;
+        }
+        return false;
+    }
+
+    // if(isSupportFileApi()){
+    //     alert("ok")
+    // }else{
+    //     alert("no")
+    // }
+
     function openfile(obj)
     {
         var thisObj=$(obj);  

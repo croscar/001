@@ -1,2 +1,6 @@
 2017全国高等学校名单.xls
 app/dist
+tags
+.tags
+.vscode
+__pycache__
