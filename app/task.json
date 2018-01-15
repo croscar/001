@@ -1,0 +1,8 @@
+{
+  "version": "0.1.0",
+  "command": "electron",
+  "isShellCommand": true,
+  "showOutput": "always",
+  "suppressTaskName": true,
+  "args": ["--debug=5858", "."]
+}
