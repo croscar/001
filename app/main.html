@@ -60,6 +60,9 @@
 
 <script>
 
+    const c2j = require('csvtojson')
+    alert(c2j)
+
     function isSupportFileApi() {
         if(window.File && window.FileList && window.FileReader && window.Blob) {
             return true;
