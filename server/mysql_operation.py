@@ -5,7 +5,7 @@
 import pymysql
 from sqlalchemy import create_engine, Column
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy.types import CHAR, Integer, String
+from sqlalchemy.types import CHAR, Integer, String, Text, Date
 from sqlalchemy.ext.declarative import declarative_base
 
 # 创建对象的基类
@@ -22,8 +22,43 @@ class CompanyTable(BaseModel):
     code = Column(CHAR(10))  # 公司的10位编码
     name = Column(String(100))  # 或者是 Column(char(30))
 
+class DanWeiTable(BaseModel):
+    '''单位表的定义
+    '''
+    __tablename__ = "t_dw"
+    AUID = Column(Integer,primary_key = True)
+    CCM = Column(CHAR(30)) 
+    ID = Column(CHAR(10))
+    MC = Column(Text)
+    JS = Column(Text)
+    DZ = Column(Text)
+    DWLB = Column(CHAR(20))
+    XZJB = Column(CHAR(2))
+    SJDW = Column(CHAR(30))
+    BBRYSL = Column(Integer)
+    SYRYSL = Column(Integer)
+
+class RenYuanTable(BaseModel):
+    '''人员表的定义
+    '''
+    __tablename__ = "t_ry"
+    AUID = Column(Integer,primary_key = True)
+    SFZH = Column(CHAR(8))
+    XM   = Column(CHAR(20))
+    XB   = Column(CHAR(1))
+    CSNY = Column(Date)
+    JG   = Column(CHAR(6))
+    MZ   = Column(CHAR(2))
+    ZP   = Column(Text)
+    BZ   = Column(Text)
+
+class RenYuanDanWei(BaseModel):
+    '''人员单位的对应表格
+    '''
+    __tablename__ = ""
+
 # 初始化数据库连接
-DB_CONNECT_STRING = "mysql+pymysql://root:@localhost/"
+DB_CONNECT_STRING = "mysql+pymysql://root:123456@localhost/"
 # "mysql+pymysql://root:123456@localhost/test?charset=utf8"  指定数据库test 
 # '数据库类型+数据库驱动名称://用户名:口令@机器地址:端口号/数据库名'
 
